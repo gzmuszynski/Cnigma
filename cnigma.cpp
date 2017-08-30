@@ -24,6 +24,64 @@ Cnigma::Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF) :
 
 }
 
+Cnigma::~Cnigma()
+{
+    if(plugboard != nullptr)
+    {
+        delete plugboard;
+        plugboard = nullptr;
+    }
+
+    if(rotor1 != nullptr)
+    {
+        delete rotor1;
+        rotor1 = nullptr;
+    }
+
+    if(rotor2 != nullptr)
+    {
+        delete rotor2;
+        rotor2 = nullptr;
+    }
+
+    if(rotor3 != nullptr)
+    {
+        delete rotor3;
+        rotor3 = nullptr;
+    }
+
+    if(reflector != nullptr)
+    {
+        delete reflector;
+        reflector = nullptr;
+    }
+
+}
+
+void Cnigma::setPlugboardSeed(int seed)
+{
+    plugboard = new Plugboard(seed, rotor1);
+}
+
+void Cnigma::setRotor1Seed(int seed)
+{
+    rotor1 = new Rotor(seed, rotor2);
+}
+
+void Cnigma::setRotor2Seed(int seed)
+{
+    rotor2 = new Rotor(seed, rotor3);}
+
+void Cnigma::setRotor3Seed(int seed)
+{
+    rotor3 = new Rotor(seed, reflector);
+}
+
+void Cnigma::setReflectorSeed(int seed)
+{
+    reflector = new Reflector(seed);
+}
+
 void Cnigma::operator<<(char *str)
 {
     if(plugboard != nullptr)

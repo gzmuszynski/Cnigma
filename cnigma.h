@@ -13,6 +13,11 @@ public:
     Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF);
     ~Cnigma();
 
+    void setPlugboardSeed(int seed);
+    void setRotor1Seed   (int seed);
+    void setRotor2Seed   (int seed);
+    void setRotor3Seed   (int seed);
+    void setReflectorSeed(int seed);
     void operator<< (char* str);
 private:
     Plugboard* plugboard = nullptr;

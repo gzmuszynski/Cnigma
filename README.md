@@ -6,7 +6,7 @@ The difference is that the original worked on 26 charset, while this implementat
 The design is quite simple:
 - there are 3 basic modules: Plugboard, Rotors and Reflector.
 
-Plugboard:
+- Plugboard:
 In the original model, this was only available in the military version.
 connects 2 characters, that will be switched
 if character is not paired with other, no change will occur.
@@ -18,7 +18,7 @@ A-C, D-G
 so the change will be:
 ABCDEFG -> CBAGEFD
 
-Rotors:
+- Rotors:
 These are tricky, and really the heart and soul of original enigma (the commercial model)
 Basically, it's kind of switch for characters. However, the result varies depending on which side signal is coming from
 It offers an offset of the paths, depending on cycle.
@@ -36,9 +36,10 @@ CDAEB ->  DEBAC
 
 after full cycle offset, the next rotor is offseted by 1
 
-Reflector:
+- Reflector:
 this basically turns signal around, while making some switches to characters. it outputs the signal back to the source, 
 but in opposite direction (back to rotor)
 
 So together, the signal goes like this:
 Input -> Plugboard -> Rotor1 -> Rotor2 -> Rotor3 -> Reflector -> Rotor3 -> Rotor2 -> Rotor2 -> Plugboard -> Output
+

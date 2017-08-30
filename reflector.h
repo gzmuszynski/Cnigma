@@ -8,12 +8,14 @@
 class Reflector : public Module
 {
 public:
-    Reflector();
+    int* plugs;
+
+    Reflector(int seed);
+
 
     // Module interface
 public:
-    void forward(int character);
-    void backward(int character);
+    int operator ()(int value);
 };
 
 #endif // REFLECTOR_H

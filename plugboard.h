@@ -1,11 +1,22 @@
 #ifndef PLUGBOARD_H
 #define PLUGBOARD_H
 
+#include "module.h"
 
-class Plugboard
+#include <QVector>
+
+
+
+class Plugboard : public Module
 {
 public:
-    Plugboard();
+    Plugboard(int seed, Module *module);
+private:
+    int* plugs;
+
+    // Module interface
+public:
+    int operator ()(int value);
 };
 
 #endif // PLUGBOARD_H

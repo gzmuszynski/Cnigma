@@ -1,8 +1,8 @@
 #include "plugboard.h"
 
-Plugboard::Plugboard()
+Plugboard::Plugboard(int seed, Module* module): Module(module)
 {
-    qsrand(0);
+    qsrand(seed);
     plugs = new int[95];
 
     QVector<int> available; // available char number vector stored for filling up switches table
@@ -13,7 +13,7 @@ Plugboard::Plugboard()
         available[i] = i;
     }
 
-    for(int i = 0; i < 0.4 * 95; i++)
+    for(int i = 0; i < 0.4 * 95; i++) // main loop for creating plug pairs
     {
         int random1 = qrand % available.size();
         int value1 = available[random1];
@@ -29,17 +29,11 @@ Plugboard::Plugboard()
     }
 }
 
-int Plugboard::swap(int character)
+int Plugboard::operator ()(int value)
 {
-    return plugs[character];
-}
+    value =      plugs[value]; // swaps character with corresponding plug, if character is plugged
+    value = nextModule(value); // jump to next module and expect returning value (forwards)
+    value =      plugs[value]; // swaps character returning from prev step (backwards)
 
-void Plugboard::forward(int character)
-{
-    right->forward(swap(character));
-}
-
-void Plugboard::backward(int character)
-{
-    left->backward(swap(character));
+    return value;
 }

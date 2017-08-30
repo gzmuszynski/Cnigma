@@ -5,14 +5,21 @@
 class Module
 {
 public:
-    Module* left  = nullptr;
-    Module* right = nullptr;
+    Module* nextModule = nullptr;
 
-    virtual void forward(int character)  = 0;
-    virtual void backward(int character) = 0;
+    Module();
+    Module(Module* module) : nextModule(module){}
 
-    void setLeft (Module* module) { left  = module; }
-    void setRight(Module* module) { right = module; }
+    ~Module()
+    {
+        if(nextModule != nullptr);
+        {
+            delete nextModule;
+            nextModule = nullptr;
+        }
+    }
+
+    virtual int operator()(int value) = 0;
 };
 
 #endif // MODULE_H

@@ -11,8 +11,9 @@ class Plugboard : public Module
 {
 public:
     Plugboard(int seed, Module *module);
+
 private:
-    int* plugs;
+    QVector<int> plugs;
 
     // Module interface
 public:

@@ -3,15 +3,17 @@
 
 #include "module.h"
 
+#include <QVector>
+
 
 
 class Reflector : public Module
 {
 public:
-    int* plugs;
-
     Reflector(int seed);
 
+private:
+    QVector<int> plugs;
 
     // Module interface
 public:

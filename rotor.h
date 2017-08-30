@@ -9,16 +9,18 @@
 class Rotor : public Module
 {
 public:
-    Rotor();
+    Rotor(int seed, Module* module);
 
 private:
     int offset;
-    QVector<int> switches;
+
+    QVector<int> switches1;
+    QVector<int> switches2;
 
     // Module interface
 public:
-    int forward();
-    int backward();
+    int  operator ()(int value);
+    void operator++();
 };
 
 #endif // ROTOR_H

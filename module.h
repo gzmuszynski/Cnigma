@@ -19,7 +19,8 @@ public:
         }
     }
 
-    virtual int operator()(int value) = 0;
+    virtual int  operator()(int value) = 0;
+    virtual void operator++(){ }
 };
 
 #endif // MODULE_H

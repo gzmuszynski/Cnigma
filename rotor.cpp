@@ -1,32 +1,43 @@
 #include "rotor.h"
 
-Rotor::Rotor()
+Rotor::Rotor(int seed, Module *module): Module(module)
 {
-    qsrand(0);
+    qsrand(seed);
 
     QVector<int> available; // available char number vector stored for filling up switches table
 
     for(int i = 0; i < 95; i++)
     {
-        available[i] = i+32; // fill the available Vector with corresponding values of printable ASCII characters
+        switches2.push_back(i);
+        available.push_back(i);
     }
 
-    for(int i = 0; available.isEmpty(); i++)
+    for(int i = 0; i < 95; i++)
     {
-        int random = qrand() % available.size(); // generate random number
-
-        switches[i] = available[random];
+        int random = qrand % available.size();
+        int value = available[random];
         available.remove(random);
+
+        switches1.push_back(value);
+        switches2[value] = i;
     }
 }
 
-void Rotor::forward(int character)
+int Rotor::operator ()(int value)
 {
-    right->forward( switches[ ( character + offset ) % switches.size() ] );
+    value =     switches1[(value+offset) % 95];
+    value = (*nextModule)(value);
+    value =     switches2[(value+offset) % 95];
+
+    return value;
 }
 
-void Rotor::backward(int character)
+void Rotor::operator++()
 {
-    left->backward( switches.indexOf(character));
+    offset++;
+    if(offset >= 95)
+    {
+        offset = 0;
+        (*nextModule)++;
+    }
 }
-

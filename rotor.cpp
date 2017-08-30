@@ -20,3 +20,13 @@ Rotor::Rotor()
     }
 }
 
+void Rotor::forward(int character)
+{
+    right->forward( switches[ ( character + offset ) % switches.size() ] );
+}
+
+void Rotor::backward(int character)
+{
+    left->backward( switches.indexOf(character));
+}
+

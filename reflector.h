@@ -12,11 +12,8 @@ public:
 
     // Module interface
 public:
-    int forward();
-    int backward();
-
-    void setLeft(Module *module);
-    void setRight(Module *module);
+    void forward(int character);
+    void backward(int character);
 };
 
 #endif // REFLECTOR_H

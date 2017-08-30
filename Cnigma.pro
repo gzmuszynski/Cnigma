@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     rotor.cpp \
-    reflector.cpp
+    reflector.cpp \
+    plugboard.cpp
 
 HEADERS  += mainwindow.h \
     rotor.h \
     module.h \
-    reflector.h
+    reflector.h \
+    plugboard.h
 
 FORMS    += mainwindow.ui

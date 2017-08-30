@@ -19,9 +19,6 @@ private:
 public:
     int forward();
     int backward();
-
-    void setLeft(Module *module);
-    void setRight(Module *module);
 };
 
 #endif // ROTOR_H

@@ -1,21 +1,22 @@
 #include "rotor.h"
+#include "cnigma.h"
 
 Rotor::Rotor(int seed, Module *module): Module(module)
 {
     qsrand(seed);
 
-    QVector<int> available; // available char number vector stored for filling up switches table
+    QVector<char> available; // available char number vector stored for filling up switches table
 
-    for(int i = 0; i < 95; i++)
+    for(char i = 0; i < CHAR_NUM; i++)
     {
         switches2.push_back(i);
         available.push_back(i);
     }
 
-    for(int i = 0; i < 95; i++)
+    for(int i = 0; i < CHAR_NUM; i++)
     {
-        int random = qrand % available.size();
-        int value = available[random];
+        char random = qrand % available.size();
+        char value = available[random];
         available.remove(random);
 
         switches1.push_back(value);
@@ -23,11 +24,11 @@ Rotor::Rotor(int seed, Module *module): Module(module)
     }
 }
 
-int Rotor::operator ()(int value)
+char Rotor::operator ()(char value)
 {
-    value =     switches1[(value+offset) % 95];
+    value =     switches1[(value+offset) % CHAR_NUM];
     value = (*nextModule)(value);
-    value =     switches2[(value+offset) % 95];
+    value =     switches2[(value+offset) % CHAR_NUM];
 
     return value;
 }
@@ -35,9 +36,14 @@ int Rotor::operator ()(int value)
 void Rotor::operator++()
 {
     offset++;
-    if(offset >= 95)
+    if(offset >= CHAR_NUM)
     {
         offset = 0;
         (*nextModule)++;
     }
+}
+
+void Rotor::operator=(char value)
+{
+    offset = qBound(0, value, CHAR_NUM);
 }

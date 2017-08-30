@@ -12,15 +12,16 @@ public:
     Rotor(int seed, Module* module);
 
 private:
-    int offset;
+    char offset;
 
-    QVector<int> switches1;
-    QVector<int> switches2;
+    QVector<char> switches1;
+    QVector<char> switches2;
 
     // Module interface
 public:
-    int  operator ()(int value);
+    char  operator()(char value);
     void operator++();
+    void operator= (char value);
 };
 
 #endif // ROTOR_H

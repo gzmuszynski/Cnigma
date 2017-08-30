@@ -13,11 +13,11 @@ public:
     Reflector(int seed);
 
 private:
-    QVector<int> plugs;
+    QVector<char> plugs;
 
     // Module interface
 public:
-    int operator ()(int value);
+    char operator ()(char value);
 };
 
 #endif // REFLECTOR_H

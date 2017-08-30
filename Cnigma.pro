@@ -28,13 +28,20 @@ SOURCES += main.cpp\
     rotor.cpp \
     reflector.cpp \
     plugboard.cpp \
-    cnigma.cpp
+    cnigma.cpp \
+    modules/plugboard.cpp \
+    modules/reflector.cpp \
+    modules/rotor.cpp
 
 HEADERS  += mainwindow.h \
     rotor.h \
     module.h \
     reflector.h \
     plugboard.h \
-    cnigma.h
+    cnigma.h \
+    modules/module.h \
+    modules/plugboard.h \
+    modules/reflector.h \
+    modules/rotor.h
 
 FORMS    += mainwindow.ui

@@ -1,5 +1,8 @@
 #include "cnigma.h"
 #include <vector>
+#include "modules/plugboard.h"
+#include "modules/reflector.h"
+#include "modules/rotor.h"
 
 Cnigma::Cnigma() :
     reflector(0),

@@ -37,9 +37,9 @@ char Rotor::operator ()(char value)
     // add signal offset on rotor entry, and subtract on exit
     // %CHAR_NUM for array bounds check
 
-    value = (switches1[(value + offset) % CHAR_NUM] - offset + CHAR_NUM) % CHAR_NUM;
+    value =     (switches1[(value + offset) % CHAR_NUM] + CHAR_NUM - offset) % CHAR_NUM;
     value = (*nextModule)(value);
-    value = (switches1[(value + offset) % CHAR_NUM] - offset + CHAR_NUM) % CHAR_NUM;
+    value =     (switches2[(value + offset) % CHAR_NUM] + CHAR_NUM - offset) % CHAR_NUM;
 
     return value;
 }

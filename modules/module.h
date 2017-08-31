@@ -7,21 +7,17 @@ class Module
 public:
     Module* nextModule = nullptr;
 
-    Module();
-    Module(Module* module) : nextModule(module){}
+    Module() { }
+    Module(Module* module) : nextModule(module){ }
 
     ~Module()
     {
-        if(nextModule != nullptr);
-        {
-            delete nextModule;
-            nextModule = nullptr;
-        }
+        nextModule == nullptr;
     }
 
-    virtual char  operator() (char value) = 0;
-    virtual void operator++ (){ }
-    virtual void operator = (char value);
+    virtual char  operator() (char) = 0;
+    virtual void operator++ (int){ }
+    virtual void operator = (char) { }
 };
 
 #endif // MODULE_H

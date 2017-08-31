@@ -17,11 +17,11 @@ Reflector::Reflector(int seed)
 
     while(available.size() > 1) // main loop for creating plug pairs
     {
-        char random1 = qrand % available.size();
+        char random1 = qrand() % available.size();
         char value1  = available[random1];
         available.remove(random1);
 
-        char random2 = qrand % available.size();
+        char random2 = qrand() % available.size();
         char value2  = available[random2];
         available.remove(random2);
 

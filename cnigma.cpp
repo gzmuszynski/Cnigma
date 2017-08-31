@@ -4,24 +4,22 @@
 #include "modules/reflector.h"
 #include "modules/rotor.h"
 
-Cnigma::Cnigma() :
-    reflector(0),
-    rotor3   (0, reflector),
-    rotor2   (0, rotor3),
-    rotor1   (0, rotor2),
-    plugboard(0, rotor1)
+Cnigma::Cnigma()
 {
-
+    reflector = new Reflector(0);
+    rotor3    = new Rotor(0, reflector);
+    rotor2    = new Rotor(0, rotor3);
+    rotor1    = new Rotor(0, rotor2);
+    plugboard = new Plugboard(0, rotor1);
 }
 
-Cnigma::Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF) :
-    reflector(seedRF),
-    rotor3   (seedR3, reflector),
-    rotor2   (seedR2, rotor3),
-    rotor1   (seedR1, rotor2),
-    plugboard(seedPB, rotor1)
+Cnigma::Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF)
 {
-
+    reflector = new Reflector(seedRF);
+    rotor3    = new Rotor(seedR3, reflector);
+    rotor2    = new Rotor(seedR2, rotor3);
+    rotor1    = new Rotor(seedR1, rotor2);
+    plugboard = new Plugboard(seedPB, rotor1);
 }
 
 Cnigma::~Cnigma()
@@ -82,15 +80,16 @@ void Cnigma::setReflectorSeed(int seed)
     reflector = new Reflector(seed);
 }
 
-void Cnigma::operator<<(char *str)
+void Cnigma::operator<<(std::string &str)
 {
     if(plugboard != nullptr)
     {
-        for(int i = 0; i < strlen(str); i++)
+        for(int i = 0; i < str.size(); i++)
         {
             if(str[i] >= 32 || str[i] < 127)
             {
-                memset(str+i,(plugboard(str[i]-32)+32),1);
+                char ch = ((*plugboard)((char)(str[i]-32))+32);
+                memset(&str[i], ch , 1);
             }
         }
     }

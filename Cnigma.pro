@@ -24,13 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     cnigma.cpp \
     modules/plugboard.cpp \
     modules/reflector.cpp \
     modules/rotor.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     cnigma.h \
     modules/module.h \
     modules/plugboard.h \

@@ -10,9 +10,10 @@ class Rotor : public Module
 {
 public:
     Rotor(int seed, Module* module);
+    ~Rotor();
 
 private:
-    char offset;
+    char offset = 0;
 
     QVector<char> switches1;
     QVector<char> switches2;
@@ -20,7 +21,7 @@ private:
     // Module interface
 public:
     char  operator()(char value);
-    void operator++();
+    void operator++(int);
     void operator= (char value);
 };
 

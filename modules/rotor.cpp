@@ -1,6 +1,8 @@
 #include "rotor.h"
 #include "cnigma.h"
 
+#include <QDebug>
+
 Rotor::Rotor(int seed, Module *module): Module(module)
 {
     qsrand(seed);
@@ -15,7 +17,7 @@ Rotor::Rotor(int seed, Module *module): Module(module)
 
     for(int i = 0; i < CHAR_NUM; i++)
     {
-        char random = qrand % available.size();
+        char random = qrand() % available.size();
         char value = available[random];
         available.remove(random);
 
@@ -24,16 +26,25 @@ Rotor::Rotor(int seed, Module *module): Module(module)
     }
 }
 
+Rotor::~Rotor()
+{
+
+}
+
 char Rotor::operator ()(char value)
 {
-    value =     switches1[(value+offset) % CHAR_NUM];
+    //Take offset into account
+    // add signal offset on rotor entry, and subtract on exit
+    // %CHAR_NUM for array bounds check
+
+    value = (switches1[(value + offset) % CHAR_NUM] - offset + CHAR_NUM) % CHAR_NUM;
     value = (*nextModule)(value);
-    value =     switches2[(value+offset) % CHAR_NUM];
+    value = (switches1[(value + offset) % CHAR_NUM] - offset + CHAR_NUM) % CHAR_NUM;
 
     return value;
 }
 
-void Rotor::operator++()
+void Rotor::operator++(int)
 {
     offset++;
     if(offset >= CHAR_NUM)
@@ -45,5 +56,5 @@ void Rotor::operator++()
 
 void Rotor::operator=(char value)
 {
-    offset = qBound(0, value, CHAR_NUM);
+    offset = qBound((char)0, value, (char)CHAR_NUM);
 }

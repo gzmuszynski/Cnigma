@@ -12,6 +12,7 @@ class Cnigma
 {
 public:
     Cnigma();
+    Cnigma(int seed);
     Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF);
     ~Cnigma();
 

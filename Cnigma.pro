@@ -36,4 +36,4 @@ HEADERS  += \
     modules/reflector.h \
     modules/rotor.h
 
-FORMS    += mainwindow.ui
+FORMS    +=

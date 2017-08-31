@@ -1,13 +1,11 @@
 #include "rotor.h"
 #include "cnigma.h"
 
-#include <QDebug>
-
 Rotor::Rotor(int seed, Module *module): Module(module)
 {
-    qsrand(seed);
+    srand(seed);
 
-    QVector<char> available; // available char number vector stored for filling up switches table
+    std::vector<char> available; // available char number vector stored for filling up switches table
 
     for(char i = 0; i < CHAR_NUM; i++)
     {
@@ -17,9 +15,9 @@ Rotor::Rotor(int seed, Module *module): Module(module)
 
     for(int i = 0; i < CHAR_NUM; i++)
     {
-        char random = qrand() % available.size();
+        char random = rand() % available.size();
         char value = available[random];
-        available.remove(random);
+        available.erase(available.begin()+random);
 
         switches1.push_back(value);
         switches2[value] = i;
@@ -56,5 +54,5 @@ void Rotor::operator++(int)
 
 void Rotor::operator=(char value)
 {
-    offset = qBound((char)0, value, (char)CHAR_NUM);
+    offset = ( value + CHAR_NUM ) % CHAR_NUM;
 }

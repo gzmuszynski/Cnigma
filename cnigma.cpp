@@ -15,12 +15,12 @@ Cnigma::Cnigma()
 
 Cnigma::Cnigma(int seed)
 {
-    qsrand(seed);
-    reflector = new Reflector(qrand());
-    rotor3    = new Rotor(qrand(), reflector);
-    rotor2    = new Rotor(qrand(), rotor3);
-    rotor1    = new Rotor(qrand(), rotor2);
-    plugboard = new Plugboard(qrand(), rotor1);
+    srand(seed);
+    reflector = new Reflector(rand());
+    rotor3    = new Rotor(rand(), reflector);
+    rotor2    = new Rotor(rand(), rotor3);
+    rotor1    = new Rotor(rand(), rotor2);
+    plugboard = new Plugboard(rand(), rotor1);
 }
 
 Cnigma::Cnigma(int seedPB, int seedR1, int seedR2, int seedR3, int seedRF)

@@ -3,9 +3,9 @@
 
 Plugboard::Plugboard(int seed, Module* module): Module(module)
 {
-    qsrand(seed);
+    srand(seed);
 
-    QVector<char> available; // available char number vector stored for filling up switches table
+    std::vector<char> available; // available char number vector stored for filling up switches table
 
     for(char i = 0; i < CHAR_NUM; i++)
     {
@@ -15,13 +15,13 @@ Plugboard::Plugboard(int seed, Module* module): Module(module)
 
     for(char i = 0; i < 0.4 * CHAR_NUM; i++) // main loop for creating plug pairs
     {
-        char random1 = qrand() % available.size();
+        char random1 = rand() % available.size();
         char value1  = available[random1];
-        available.remove(random1);
+        available.erase(available.begin()+random1);
 
-        char random2 = qrand() % available.size();
+        char random2 = rand() % available.size();
         char value2  = available[random2];
-        available.remove(random2);
+        available.erase(available.begin()+random2);
 
         plugs[value1] = value2;
         plugs[value2] = value1;

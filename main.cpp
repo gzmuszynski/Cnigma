@@ -1,21 +1,37 @@
 #include "cnigma.h"
-#include <QDebug>
+#include <random>
+#include <stdio.h>
+#include <time.h>
+#include <iostream>
+
+// example usage of Cnigma class
 
 int main(int argc, char *argv[])
 {
-    std::string str = "AAAAA";
+    std::string str = argv[1];
+    int seed;
 
-    qDebug() << "starting string" << str.c_str();
+    if(argc < 3)
+    {
+        srand(time(NULL));
+        seed = (int)rand();
+    }
+    else
+    {
+        seed = atoi(argv[2]);
+    }
 
-    Cnigma cypher(20);
+    std::cout << "Starting string: " << str.c_str() << std::endl;
+
+    Cnigma cypher(seed);
     cypher << str;
 
-    qDebug() << "cyphered string" << str.c_str();
+    std::cout << "Cyphered string: " << str.c_str() << std::endl;
 
-    Cnigma decypher(20);
+    Cnigma decypher(seed);
     decypher << str;
 
-    qDebug() << "decyphered string" << str.c_str();
+    std::cout << "Decyphered string: " << str.c_str() << std::endl;
 
     return 0;
 }

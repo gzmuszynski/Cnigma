@@ -3,7 +3,7 @@
 
 #include "module.h"
 
-#include <QVector>
+#include <vector>
 
 
 
@@ -13,7 +13,7 @@ public:
     Reflector(int seed);
 
 private:
-    QVector<char> plugs;
+    std::vector<char> plugs;
 
     // Module interface
 public:

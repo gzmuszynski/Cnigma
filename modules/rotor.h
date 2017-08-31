@@ -3,7 +3,7 @@
 
 #include "module.h"
 
-#include <QVector>
+#include <vector>
 
 
 class Rotor : public Module
@@ -15,8 +15,8 @@ public:
 private:
     char offset = 0;
 
-    QVector<char> switches1;
-    QVector<char> switches2;
+    std::vector<char> switches1;
+    std::vector<char> switches2;
 
     // Module interface
 public:
